@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FileText, Zap, Shield, Target, ArrowRight, CheckCircle2 } from 'lucide-react';
 import useAuthStore from '../store/authStore';
@@ -8,6 +8,14 @@ import LandingNavbar from '../components/common/LandingNavbar';
 
 const HomePage = () => {
   const { isAuthenticated } = useAuthStore();
+  const navigate = useNavigate();
+
+  // Redirect to dashboard if already authenticated
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/dashboard', { replace: true });
+    }
+  }, [isAuthenticated, navigate]);
 
   const features = [
     {
@@ -91,29 +99,6 @@ const HomePage = () => {
             >
               ATSChecker uses advanced algorithms to ensure your resume bypasses automated filters and reaches human recruiters.
             </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="flex flex-col sm:flex-row items-center justify-center gap-4"
-            >
-              {isAuthenticated ? (
-                <Link
-                  to="/dashboard"
-                  className="group relative px-8 py-4 bg-white text-black rounded-full font-semibold overflow-hidden transition-all hover:scale-105 active:scale-95"
-                >
-                  <span className="relative z-10 flex items-center">
-                    Go to Dashboard <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </span>
-                </Link>
-              ) : (
-                <>
-                
-                 
-                </>
-              )}
-            </motion.div>
           </div>
         </section>
 
