@@ -29,7 +29,7 @@ function NavBar() {
   const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
 
   const isActive = (path) => {
-    if (path === '/' && location.pathname === '/') return true;
+    if (path === '/upload' && location.pathname === '/upload') return true;
     if (path === '/dashboard' && location.pathname === '/dashboard') return true;
     return false;
   };
@@ -71,14 +71,14 @@ function NavBar() {
               </motion.span>
               <nav className="flex space-x-2.5">
                 <motion.a 
-                  href="/" 
+                  href="/upload" 
                   className={`text-[#A3A3A3] hover:text-accent-400 border border-[#262626] hover:border-accent-400 px-2.5 py-1.5 rounded-full text-xs font-medium transition-all duration-200 bg-[#171717]/30 hover:bg-[#171717]/50 flex items-center space-x-1.5 relative overflow-hidden ${
-                    isActive('/') ? 'border-accent-400 text-accent-400' : ''
+                    isActive('/upload') ? 'border-accent-400 text-accent-400' : ''
                   }`}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  {isActive('/') && (
+                  {isActive('/upload') && (
                     <div className="absolute inset-0 animate-shimmer bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
                   )}
                   <Zap className="w-3.5 h-3.5 relative z-10" />
@@ -174,15 +174,15 @@ function NavBar() {
             {/* Navigation Links */}
             <div className="p-4 space-y-3">
               <motion.a 
-                href="/" 
+                href="/upload" 
                 onClick={() => setIsSidebarOpen(false)}
                 className={`text-[#A3A3A3] hover:text-accent-400 border border-[#262626] hover:border-accent-400 px-3 py-2.5 rounded-full text-sm font-medium transition-all duration-200 bg-[#171717]/30 hover:bg-[#171717]/50 flex items-center space-x-2.5 relative overflow-hidden ${
-                  isActive('/') ? 'border-accent-400 text-accent-400' : ''
+                  isActive('/upload') ? 'border-accent-400 text-accent-400' : ''
                 }`}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                {isActive('/') && (
+                {isActive('/upload') && (
                   <div className="absolute inset-0 animate-shimmer bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
                 )}
                 <Zap className="w-4 h-4 flex-shrink-0 relative z-10" />
@@ -256,26 +256,29 @@ function App() {
                 {/* Google OAuth Callback Route */}
                 <Route path="/auth/google/callback" element={<GoogleCallbackPage />} />
                 
+                {/* Home Page - Always accessible */}
+                <Route path="/" element={<HomePage />} />
+                
                 {/* Public routes */}
                 <Route 
                   path="/login" 
-                  element={isAuthenticated ? <Navigate to="/" replace /> : <AuthPage type="login" />} 
+                  element={isAuthenticated ? <Navigate to="/dashboard" replace /> : <AuthPage type="login" />} 
                 />
                 <Route 
                   path="/register" 
-                  element={isAuthenticated ? <Navigate to="/" replace /> : <AuthPage type="register" />} 
+                  element={isAuthenticated ? <Navigate to="/dashboard" replace /> : <AuthPage type="register" />} 
                 />
                 
                 {/* Protected routes */}
                 {isAuthenticated ? (
                   <>
-                    <Route path="/" element={<UploadForm />} />
+                    <Route path="/upload" element={<UploadForm />} />
                     <Route path="/dashboard" element={<DashboardPage />} />
                     <Route path="/results" element={<ResultsPage />} />
                     <Route path="/results/:id" element={<ResultsPage />} />
                   </>
                 ) : (
-                  <Route path="*" element={<Navigate to="/login" replace />} />
+                  <Route path="*" element={<Navigate to="/" replace />} />
                 )}
               </Routes>
             </AnimatePresence>

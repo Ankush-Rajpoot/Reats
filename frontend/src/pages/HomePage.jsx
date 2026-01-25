@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { FileText, Zap, Shield, Target, ArrowRight, CheckCircle2 } from 'lucide-react';
 import useAuthStore from '../store/authStore';
 import Background from '../components/ui/Background';
+import LandingNavbar from '../components/common/LandingNavbar';
 
 const HomePage = () => {
   const { isAuthenticated } = useAuthStore();
@@ -51,6 +52,7 @@ const HomePage = () => {
   return (
     <div className="relative min-h-screen text-white overflow-hidden selection:bg-white/20">
       <Background />
+      <LandingNavbar />
       
       <div className="relative z-10">
         {/* Hero Section */}
@@ -107,20 +109,8 @@ const HomePage = () => {
                 </Link>
               ) : (
                 <>
-                  <Link
-                    to="/register"
-                    className="group relative px-8 py-4 bg-white text-black rounded-full font-semibold overflow-hidden transition-all hover:scale-105 active:scale-95"
-                  >
-                    <span className="relative z-10 flex items-center">
-                      Get Started <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </span>
-                  </Link>
-                  <Link
-                    to="/login"
-                    className="px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full font-semibold transition-all"
-                  >
-                    Sign In
-                  </Link>
+                
+                 
                 </>
               )}
             </motion.div>
@@ -128,7 +118,7 @@ const HomePage = () => {
         </section>
 
         {/* Features Grid */}
-        <section className="py-24 px-6 border-t border-white/5">
+        {/* <section className="py-24 px-6 border-t border-white/5">
           <div className="max-w-6xl mx-auto">
             <motion.div
               variants={containerVariants}
@@ -154,10 +144,10 @@ const HomePage = () => {
               ))}
             </motion.div>
           </div>
-        </section>
+        </section> */}
 
         {/* Social Proof / Stats */}
-        <section className="py-24 px-6 bg-white/[0.01]">
+        {/* <section className="py-24 px-6 bg-white/[0.01]">
           <div className="max-w-4xl mx-auto text-center">
             <motion.h2
               initial={{ opacity: 0 }}
@@ -167,7 +157,6 @@ const HomePage = () => {
               Trusted by candidates at
             </motion.h2>
             <div className="flex flex-wrap justify-center gap-x-12 gap-y-8 opacity-20 grayscale invert">
-              {/* Placeholder for logos */}
               <div className="text-2xl font-bold tracking-tighter">META</div>
               <div className="text-2xl font-bold tracking-tighter">GOOGLE</div>
               <div className="text-2xl font-bold tracking-tighter">AMAZON</div>
@@ -175,10 +164,10 @@ const HomePage = () => {
               <div className="text-2xl font-bold tracking-tighter">NETFLIX</div>
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* Footer */}
-        <footer className="py-12 px-6 border-t border-white/5">
+        {/* <footer className="py-12 px-6 border-t border-white/5">
           <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
             <div className="flex items-center space-x-2">
               <div className="w-6 h-6 bg-white rounded flex items-center justify-center">
@@ -195,7 +184,7 @@ const HomePage = () => {
               © 2026 ATSChecker. All rights reserved.
             </div>
           </div>
-        </footer>
+        </footer> */}
       </div>
     </div>
   );
