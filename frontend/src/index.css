@@ -1,259 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  html {
-    @apply bg-dark-100;
-  }
-  
-  body {
-    @apply bg-dark-100 text-accent-400 font-sans antialiased;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    line-height: 1.5;
-  }
-  
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-semibold tracking-tight text-accent-400;
-    line-height: 1.2;
-  }
-  
-  h1 {
-    @apply text-3xl md:text-4xl lg:text-5xl;
-  }
-  
-  h2 {
-    @apply text-2xl md:text-3xl lg:text-4xl;
-  }
-  
-  h3 {
-    @apply text-xl md:text-2xl;
-  }
+:root {
+  color-scheme: dark;
 }
 
-@layer components {
-  .glass-effect {
-    @apply bg-dark-300/50 backdrop-blur-md border border-dark-600/50;
-  }
-  
-  .button-primary {
-    @apply bg-dark-500 hover:bg-dark-600 text-accent-400 font-medium px-6 py-3 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105 border border-dark-600;
-  }
-  
-  .button-secondary {
-    @apply bg-dark-300 hover:bg-dark-400 text-accent-400 font-medium px-6 py-3 rounded-lg border border-dark-600 transition-all duration-200 shadow-md hover:shadow-lg;
-  }
-  
-  .card {
-    @apply bg-dark-300 rounded-xl shadow-sm border border-dark-600 p-6 transition-all duration-200 hover:shadow-md hover:border-dark-700;
-  }
-  
-  .input-field {
-    @apply block w-full px-4 py-3 border border-dark-600 rounded-lg focus:ring-2 focus:ring-dark-700 focus:border-dark-700 transition-colors bg-dark-300 text-accent-400 placeholder-dark-700;
-  }
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #000000;
+  color: #ffffff;
 }
 
-@layer utilities {
-  .bg-size-200 {
-    background-size: 200% 100%;
-  }
+* {
+  box-sizing: border-box;
 }
 
-/* Custom dark scrollbar */
+/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-dark-300;
+  background: #000000;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-dark-600 rounded-full;
+  background: #262626;
+  border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-dark-700;
+  background: #373737;
 }
 
-/* Firefox scrollbar */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: #373737 #0A0A0A;
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
 }
 
-/* Autofill styles to prevent browser styling from overriding our design */
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-input:-webkit-autofill:active {
-  -webkit-box-shadow: inset 0 0 0px 1000px #0A0A0A !important;
-  -webkit-text-fill-color: #A3A3A3 !important;
-  background-color: #0A0A0A !important;
-  border-color: #373737 !important;
-  caret-color: #A3A3A3 !important;
-  transition: background-color 5000s ease-in-out 0s !important;
+/* Selection color */
+::selection {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
 }
 
-/* Additional autofill protection for all states */
-input:-webkit-autofill::first-line {
-  color: #A3A3A3 !important;
-  background-color: #0A0A0A !important;
-}
-
-/* Ensure consistent styling during focus */
-input:focus:-webkit-autofill,
-input:focus:-webkit-autofill:hover {
-  -webkit-box-shadow: inset 0 0 0px 1000px #0A0A0A !important;
-  -webkit-text-fill-color: #A3A3A3 !important;
-  background-color: #0A0A0A !important;
-  border-color: #525252 !important;
-}
-
-/* Ensure icons stay visible and properly positioned during autofill */
-.relative input:-webkit-autofill ~ .absolute,
-.relative input:-webkit-autofill + .absolute {
-  z-index: 10 !important;
-  color: #737373 !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-  pointer-events: none !important;
-}
-
-/* Force icon visibility and styling consistency */
-.relative .absolute.pointer-events-none {
-  position: absolute !important;
-  z-index: 10 !important;
-  color: #737373 !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-
-/* Prevent any input state from affecting icons */
-input:focus ~ .absolute.pointer-events-none,
-input:hover ~ .absolute.pointer-events-none,
-input:active ~ .absolute.pointer-events-none,
-input:-webkit-autofill ~ .absolute.pointer-events-none {
-  color: #737373 !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-}
-
-/* Special handling for password toggle buttons */
-.relative .absolute:not(.pointer-events-none) {
-  z-index: 10 !important;
-  color: #737373 !important;
-}
-
-.relative .absolute:not(.pointer-events-none):hover {
-  color: #A3A3A3 !important;
-}
-
-/* Override any browser default autofill styling */
-input[type="email"]:-webkit-autofill,
-input[type="password"]:-webkit-autofill,
-input[type="text"]:-webkit-autofill {
-  -webkit-box-shadow: inset 0 0 0px 1000px #0A0A0A !important;
-  -webkit-text-fill-color: #A3A3A3 !important;
-  background: #0A0A0A !important;
-  background-color: #0A0A0A !important;
-}
-
-/* Mobile-specific optimizations */
-@media (max-width: 768px) {
-  /* Improve tap targets for mobile */
-  button, a, input, select, textarea {
-    min-height: 44px;
-  }
-  
-  /* Optimize text rendering for mobile */
-  body {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
-  }
-  
-  /* Prevent zoom on input focus */
-  input, select, textarea {
-    font-size: 16px !important;
-  }
-  
-  /* Improve mobile scrolling */
-  * {
-    -webkit-overflow-scrolling: touch;
-  }
-  
-  /* Mobile-friendly spacing for cards */
-  .card {
-    @apply p-4;
-  }
-  
-  /* Optimize button sizing for mobile */
-  .button-primary, .button-secondary {
-    @apply px-4 py-3 text-sm;
+@layer base {
+  html {
+    @apply bg-black;
   }
 }
 
-/* Touch device optimizations */
-@media (hover: none) and (pointer: coarse) {
-  /* Remove hover effects on touch devices */
-  .hover\:scale-105:hover {
-    transform: none !important;
-  }
-  
-  /* Use active states instead of hover for touch */
-  .button-primary:active {
-    @apply scale-95 bg-dark-600;
-  }
-  
-  .button-secondary:active {
-    @apply scale-95 bg-dark-400;
-  }
-}
-
-/* Loading spinner */
-.spinner {
-  border: 3px solid #171717;
-  border-top: 3px solid #737373;
-  border-radius: 50%;
-  width: 24px;
-  height: 24px;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/* Mobile-responsive typography */
-@media (max-width: 640px) {
-  .text-responsive {
-    font-size: clamp(0.875rem, 2.5vw, 1rem);
-  }
-  
-  .text-responsive-lg {
-    font-size: clamp(1.125rem, 4vw, 1.5rem);
-  }
-  
-  .text-responsive-xl {
-    font-size: clamp(1.5rem, 6vw, 2.25rem);
-  }
-}
-
-/* Improve mobile form experience */
-@media (max-width: 768px) {
-  .input-field {
-    @apply px-3 py-3 text-base;
-  }
-  
-  /* Better mobile modal experience */
-  .modal-mobile {
-    @apply m-2 max-h-[calc(100vh-1rem)] overflow-y-auto;
-  }
-  
-  /* Mobile-friendly dropdown positioning */
-  .dropdown-mobile {
-    @apply fixed inset-x-4 top-auto bottom-4 max-h-60 overflow-y-auto;
+@layer components {
+  .glass-effect {
+    @apply bg-white/[0.02] backdrop-blur-xl border border-white/10;
   }
 }
