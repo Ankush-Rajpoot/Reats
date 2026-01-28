@@ -8,7 +8,7 @@ import UploadForm from './components/upload/UploadForm';
 import AuthPage from './pages/AuthPage';
 import DashboardPage from './pages/DashboardPage';
 import ResultsPage from './pages/ResultsPage';
-import HomePage from './pages/HomePage';
+import LandingPage from './landing-page/LandingPage';
 import GoogleCallbackPage from './pages/GoogleCallbackPage';
 import useAuthStore from './store/authStore';
 import { AppLoadingSkeleton } from './components/skeletons';
@@ -51,7 +51,7 @@ function NavBar() {
         <div className="max-w-6xl mx-auto px-3 sm:px-5 lg:px-7">
           <div className="flex justify-between items-center h-14">
             {/* Logo/Brand */}
-            <motion.div 
+            <motion.div
               className="flex items-center"
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 300 }}
@@ -61,7 +61,7 @@ function NavBar() {
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-4">
-              <motion.span 
+              <motion.span
                 className="text-[#A3A3A3] border border-[#262626] px-2.5 py-1 rounded-full bg-[#171717]/50 flex items-center space-x-1.5 max-w-40"
                 whileHover={{ scale: 1.02, borderColor: "#A3A3A3" }}
                 transition={{ duration: 0.2 }}
@@ -70,11 +70,10 @@ function NavBar() {
                 <span className="text-sm truncate">{user?.name || user?.email}</span>
               </motion.span>
               <nav className="flex space-x-2.5">
-                <motion.a 
-                  href="/upload" 
-                  className={`text-[#A3A3A3] hover:text-accent-400 border border-[#262626] hover:border-accent-400 px-2.5 py-1.5 rounded-full text-xs font-medium transition-all duration-200 bg-[#171717]/30 hover:bg-[#171717]/50 flex items-center space-x-1.5 relative overflow-hidden ${
-                    isActive('/upload') ? 'border-accent-400 text-accent-400' : ''
-                  }`}
+                <motion.a
+                  href="/upload"
+                  className={`text-[#A3A3A3] hover:text-accent-400 border border-[#262626] hover:border-accent-400 px-2.5 py-1.5 rounded-full text-xs font-medium transition-all duration-200 bg-[#171717]/30 hover:bg-[#171717]/50 flex items-center space-x-1.5 relative overflow-hidden ${isActive('/upload') ? 'border-accent-400 text-accent-400' : ''
+                    }`}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -84,11 +83,10 @@ function NavBar() {
                   <Zap className="w-3.5 h-3.5 relative z-10" />
                   <span className="relative z-10">Analyze</span>
                 </motion.a>
-                <motion.a 
-                  href="/dashboard" 
-                  className={`text-[#A3A3A3] hover:text-accent-400 border border-[#262626] hover:border-accent-400 px-2.5 py-1.5 rounded-full text-xs font-medium transition-all duration-200 bg-[#171717]/30 hover:bg-[#171717]/50 flex items-center space-x-1.5 relative overflow-hidden ${
-                    isActive('/dashboard') ? 'border-accent-400 text-accent-400' : ''
-                  }`}
+                <motion.a
+                  href="/dashboard"
+                  className={`text-[#A3A3A3] hover:text-accent-400 border border-[#262626] hover:border-accent-400 px-2.5 py-1.5 rounded-full text-xs font-medium transition-all duration-200 bg-[#171717]/30 hover:bg-[#171717]/50 flex items-center space-x-1.5 relative overflow-hidden ${isActive('/dashboard') ? 'border-accent-400 text-accent-400' : ''
+                    }`}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -98,7 +96,7 @@ function NavBar() {
                   <BarChart3 className="w-3.5 h-3.5 relative z-10" />
                   <span className="relative z-10">Dashboard</span>
                 </motion.a>
-                <motion.button 
+                <motion.button
                   onClick={handleLogout}
                   className="text-[#A3A3A3] hover:text-red-400 border border-[#262626] hover:border-red-400 px-2.5 py-1.5 rounded-full text-xs font-medium transition-all duration-200 bg-[#171717]/30 hover:bg-red-500/20 flex items-center space-x-1.5"
                   whileHover={{ scale: 1.05 }}
@@ -173,12 +171,11 @@ function NavBar() {
 
             {/* Navigation Links */}
             <div className="p-4 space-y-3">
-              <motion.a 
-                href="/upload" 
+              <motion.a
+                href="/upload"
                 onClick={() => setIsSidebarOpen(false)}
-                className={`text-[#A3A3A3] hover:text-accent-400 border border-[#262626] hover:border-accent-400 px-3 py-2.5 rounded-full text-sm font-medium transition-all duration-200 bg-[#171717]/30 hover:bg-[#171717]/50 flex items-center space-x-2.5 relative overflow-hidden ${
-                  isActive('/upload') ? 'border-accent-400 text-accent-400' : ''
-                }`}
+                className={`text-[#A3A3A3] hover:text-accent-400 border border-[#262626] hover:border-accent-400 px-3 py-2.5 rounded-full text-sm font-medium transition-all duration-200 bg-[#171717]/30 hover:bg-[#171717]/50 flex items-center space-x-2.5 relative overflow-hidden ${isActive('/upload') ? 'border-accent-400 text-accent-400' : ''
+                  }`}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -188,13 +185,12 @@ function NavBar() {
                 <Zap className="w-4 h-4 flex-shrink-0 relative z-10" />
                 <span className="relative z-10">Analyze Resume</span>
               </motion.a>
-              
-              <motion.a 
-                href="/dashboard" 
+
+              <motion.a
+                href="/dashboard"
                 onClick={() => setIsSidebarOpen(false)}
-                className={`text-[#A3A3A3] hover:text-accent-400 border border-[#262626] hover:border-accent-400 px-3 py-2.5 rounded-full text-sm font-medium transition-all duration-200 bg-[#171717]/30 hover:bg-[#171717]/50 flex items-center space-x-2.5 relative overflow-hidden ${
-                  isActive('/dashboard') ? 'border-accent-400 text-accent-400' : ''
-                }`}
+                className={`text-[#A3A3A3] hover:text-accent-400 border border-[#262626] hover:border-accent-400 px-3 py-2.5 rounded-full text-sm font-medium transition-all duration-200 bg-[#171717]/30 hover:bg-[#171717]/50 flex items-center space-x-2.5 relative overflow-hidden ${isActive('/dashboard') ? 'border-accent-400 text-accent-400' : ''
+                  }`}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -208,7 +204,7 @@ function NavBar() {
 
             {/* Logout Button */}
             <div className="absolute bottom-4 left-4 right-4">
-              <motion.button 
+              <motion.button
                 onClick={handleLogout}
                 className="text-[#A3A3A3] hover:text-red-400 border border-[#262626] hover:border-red-400 px-3 py-2.5 rounded-full text-sm font-medium transition-all duration-200 bg-[#171717]/30 hover:bg-red-500/20 flex items-center space-x-2.5 w-full justify-center"
                 whileHover={{ scale: 1.02 }}
@@ -234,7 +230,7 @@ function App() {
 
   if (isLoading) {
     return (
-      <AppLoadingSkeleton 
+      <AppLoadingSkeleton
         type="default"
         message="Initializing ATS Checker..."
         showIcon={true}
@@ -255,20 +251,20 @@ function App() {
               <Routes>
                 {/* Google OAuth Callback Route */}
                 <Route path="/auth/google/callback" element={<GoogleCallbackPage />} />
-                
+
                 {/* Home Page - Always accessible */}
-                <Route path="/" element={<HomePage />} />
-                
+                <Route path="/" element={<LandingPage />} />
+
                 {/* Public routes */}
-                <Route 
-                  path="/login" 
-                  element={isAuthenticated ? <Navigate to="/dashboard" replace /> : <AuthPage type="login" />} 
+                <Route
+                  path="/login"
+                  element={isAuthenticated ? <Navigate to="/dashboard" replace /> : <AuthPage type="login" />}
                 />
-                <Route 
-                  path="/register" 
-                  element={isAuthenticated ? <Navigate to="/dashboard" replace /> : <AuthPage type="register" />} 
+                <Route
+                  path="/register"
+                  element={isAuthenticated ? <Navigate to="/dashboard" replace /> : <AuthPage type="register" />}
                 />
-                
+
                 {/* Protected routes */}
                 {isAuthenticated ? (
                   <>
