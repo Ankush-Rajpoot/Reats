@@ -10,9 +10,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ATS Checker - Resume Optimization Tool</title>
     <meta name="description" content="Optimize your resume for ATS systems with our free analysis tool. Get instant feedback and improve your job application success rate." />
+    <meta name="theme-color" content="#6366f1" />
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/service-worker.js')
+            .then((registration) => {
+              console.log('SW registered: ', registration);
+            })
+            .catch((registrationError) => {
+              console.log('SW registration failed: ', registrationError);
+            });
+        });
+      }
+    </script>
   </body>
 </html>
