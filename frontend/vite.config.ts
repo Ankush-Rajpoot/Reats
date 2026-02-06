@@ -10,8 +10,8 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon_io/*.png', 'favicon_io/*.ico'],
       manifest: {
-        name: 'ATS Checker - Resume Optimization Tool',
-        short_name: 'ATS Checker',
+        name: 'Reats',
+        short_name: 'Reats',
         description: 'Optimize your resume for ATS systems with instant feedback',
         theme_color: '#000000',
         background_color: '#000000',

@@ -17,7 +17,7 @@ const LandingNavbar = () => {
           <Link to="/" className="flex items-center space-x-2 group">
             <img 
               src="/favicon_io/favicon-32x32.png" 
-              alt="ATS Checker" 
+              alt="Reats" 
               className="w-8 h-8 group-hover:scale-110 transition-transform"
             />
             <span className="text-xl font-bold tracking-tight">Reats</span>

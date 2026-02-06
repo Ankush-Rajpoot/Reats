@@ -6,7 +6,7 @@
 class EmailTemplate {
   constructor(config = {}) {
     this.config = {
-      brandName: 'ATS Checker',
+      brandName: 'Reats',
       tagline: 'AI-Powered Resume Optimization',
       primaryColor: '#FFFFFF',
       secondaryColor: '#A3A3A3',
