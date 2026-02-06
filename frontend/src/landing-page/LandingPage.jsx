@@ -1,13 +1,11 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Zap, Shield, Target } from 'lucide-react';
 import useAuthStore from '../store/authStore';
 import Background from './Background';
 import LandingNavbar from './LandingNavbar';
-import CardSwap, { Card } from './CardSwap';
-import FeatureContent from './FeatureContent';
-import { MiniScoreCard, MiniDashboardChart, MiniRecommendations } from './MiniFeatureCards';
+import SafariMockup from '../components/ui/SafariMockup';
+import PublicUploadDemo from '../components/ui/PublicUploadDemo';
 
 const LandingPage = () => {
     const { isAuthenticated } = useAuthStore();
@@ -65,41 +63,69 @@ const LandingPage = () => {
                     </div>
                 </section>
 
-                {/* Features / CardSwap Section */}
-                <section className="py-24 px-6 border-t border-white/5 min-h-screen flex items-center">
-                    <div className="max-w-7xl mx-auto w-full">
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative">
-                            {/* Left side - Content with synchronized animations */}
-                            <FeatureContent />
-
-                            {/* Right side - CardSwap positioned at right edge */}
+                {/* Safari Mockup Section */}
+                <section className="py-12 md:py-24 px-4 md:px-6 border-t border-white/5">
+                    <div className="max-w-[1400px] mx-auto">
+                        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-8 lg:gap-12 items-center">
+                            {/* Left Side - Slogan */}
                             <motion.div
-                                initial={{ opacity: 0, x: 20 }}
+                                initial={{ opacity: 0, x: -40 }}
                                 whileInView={{ opacity: 1, x: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.8 }}
-                                className="relative h-[600px] hidden lg:block"
+                                className="space-y-4 text-center lg:text-left order-2 lg:order-1"
                             >
-                                <CardSwap
-                                    cardDistance={60}
-                                    verticalDistance={85}
-                                    delay={2500}
-                                    pauseOnHover={false}
-                                    skewAmount={12}
-                                    easing="elastic"
-                                    width={700}
-                                    height={400}
-                                >
-                                    <Card customClass="bg-gradient-to-br from-black via-black to-[#0a0a0a] border border-white/10 shadow-2xl overflow-hidden">
-                                        <MiniScoreCard />
-                                    </Card>
-                                    <Card customClass="bg-gradient-to-br from-black via-black to-[#0a0a0a] border border-white/10 shadow-2xl overflow-hidden">
-                                        <MiniDashboardChart />
-                                    </Card>
-                                    <Card customClass="bg-gradient-to-br from-black via-black to-[#0a0a0a] border border-white/10 shadow-2xl overflow-hidden">
-                                        <MiniRecommendations />
-                                    </Card>
-                                </CardSwap>
+                                <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-white/5 border border-white/10">
+                                    <span className="relative flex h-2 w-2">
+                                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white/40 opacity-75"></span>
+                                        <span className="relative inline-flex rounded-full h-2 w-2 bg-white/80"></span>
+                                    </span>
+                                    <span className="text-xs font-medium tracking-wider uppercase text-white/60">AI-Powered Analysis</span>
+                                </div>
+                                
+                                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tighter leading-tight">
+                                    Beat the ATS.<br />
+                                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/80 to-white/40">
+                                        Land Your Dream Job.
+                                    </span>
+                                </h2>
+                                
+                                <p className="text-sm md:text-base text-white/50 leading-relaxed">
+                                    Upload your resume and get instant feedback on ATS compatibility, keyword optimization, and expert recommendations to stand out from the competition.
+                                </p>
+                                
+                                <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start pt-2">
+                                    <motion.button
+                                        whileHover={{ scale: 1.05 }}
+                                        whileTap={{ scale: 0.95 }}
+                                        onClick={() => navigate('/auth')}
+                                        className="px-5 py-2.5 bg-white text-black font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-sm"
+                                    >
+                                        Get Started Free
+                                    </motion.button>
+                                    <motion.button
+                                        whileHover={{ scale: 1.05 }}
+                                        whileTap={{ scale: 0.95 }}
+                                        className="px-5 py-2.5 bg-white/5 border border-white/10 text-white font-semibold rounded-lg hover:bg-white/10 transition-all duration-300 text-sm"
+                                    >
+                                        See How It Works
+                                    </motion.button>
+                                </div>
+                            </motion.div>
+
+                            {/* Right Side - Mockup */}
+                            <motion.div
+                                initial={{ opacity: 0, x: 40 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.8 }}
+                                className="relative order-1 lg:order-2"
+                            >
+                                <SafariMockup 
+                                    url="reats.in/upload" 
+                                    component={PublicUploadDemo}
+                                    className="w-full"
+                                />
                             </motion.div>
                         </div>
                     </div>
