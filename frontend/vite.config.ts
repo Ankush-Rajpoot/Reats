@@ -13,7 +13,7 @@ export default defineConfig({
         name: 'ATS Checker - Resume Optimization Tool',
         short_name: 'ATS Checker',
         description: 'Optimize your resume for ATS systems with instant feedback',
-        theme_color: '#6366f1',
+        theme_color: '#0f172a',
         background_color: '#0f172a',
         display: 'standalone',
         scope: '/',
