@@ -56,7 +56,7 @@ function NavBar() {
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
-              <h1 className="text-lg sm:text-xl font-bold text-accent-400">ATS Checker</h1>
+              <h1 className="text-lg sm:text-xl font-bold text-accent-400">Reats</h1>
             </motion.div>
 
             {/* Desktop Navigation */}
@@ -147,7 +147,7 @@ function NavBar() {
           >
             {/* Sidebar Header */}
             <div className="flex items-center justify-between p-4 border-b border-[#171717]/50">
-              <h2 className="text-lg font-bold text-accent-400">ATS Checker</h2>
+              <h2 className="text-lg font-bold text-accent-400">Reats</h2>
               <motion.button
                 onClick={() => setIsSidebarOpen(false)}
                 className="p-2 text-[#A3A3A3] hover:text-accent-400 transition-colors rounded-lg hover:bg-[#171717]/50"
@@ -232,7 +232,7 @@ function App() {
     return (
       <AppLoadingSkeleton
         type="default"
-        message="Initializing ATS Checker..."
+        message="Initializing Reats..."
         showIcon={true}
       />
     );

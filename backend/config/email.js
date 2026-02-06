@@ -89,7 +89,7 @@ const sendEmail = async (options) => {
     console.log('✅ Email transporter obtained successfully');
 
     const mailOptions = {
-      from: process.env.EMAIL_FROM || 'ATS Checker <noreply@atschecker.com>',
+      from: process.env.EMAIL_FROM || 'Reats <noreply@atschecker.com>',
       to: options.to,
       subject: options.subject,
       html: options.html,

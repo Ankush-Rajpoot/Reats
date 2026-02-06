@@ -12,7 +12,7 @@ const NotificationEmailTemplate = require('./NotificationEmailTemplate');
 class EmailTemplateFactory {
   constructor(config = {}) {
     this.config = {
-      brandName: 'ATS Checker',
+      brandName: 'Reats',
       tagline: 'AI-Powered Resume Optimization',
       primaryColor: '#FFFFFF',
       secondaryColor: '#A3A3A3',

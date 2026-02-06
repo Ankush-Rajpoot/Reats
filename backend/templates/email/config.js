@@ -6,7 +6,7 @@
 const emailConfig = {
   // Brand Configuration
   brand: {
-    name: process.env.BRAND_NAME || 'ATS Checker',
+    name: process.env.BRAND_NAME || 'Reats',
     tagline: process.env.BRAND_TAGLINE || 'AI-Powered Resume Optimization',
     logo: process.env.BRAND_LOGO_URL || null,
     website: process.env.FRONTEND_URL || 'https://atschecker.com',
@@ -103,7 +103,7 @@ const emailConfig = {
 
   // Default email settings
   defaults: {
-    fromName: process.env.EMAIL_FROM_NAME || 'ATS Checker',
+    fromName: process.env.EMAIL_FROM_NAME || 'Reats',
     replyTo: process.env.EMAIL_REPLY_TO || process.env.SUPPORT_EMAIL || 'noreply@atschecker.com',
     timezone: process.env.TIMEZONE || 'UTC',
     dateFormat: 'MMMM DD, YYYY',

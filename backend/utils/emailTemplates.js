@@ -1,4 +1,4 @@
-// Dark theme email templates for ATS Checker
+// Dark theme email templates for Reats
 
 const getEmailStyles = () => `
   <style>
@@ -258,7 +258,7 @@ const generateReportEmailHTML = (user, report, dashboardStats) => {
       <div class="container">
         <!-- Header -->
         <div class="header">
-          <div class="logo">ATS Checker</div>
+          <div class="logo">Reats</div>
           <div class="tagline">Resume Analysis Complete</div>
         </div>
         
@@ -375,7 +375,7 @@ const generateDashboardEmailHTML = (user, dashboardData) => {
       <div class="container">
         <!-- Header -->
         <div class="header">
-          <div class="logo">ATS Checker</div>
+          <div class="logo">Reats</div>
           <div class="tagline">Weekly Dashboard Summary</div>
         </div>
         

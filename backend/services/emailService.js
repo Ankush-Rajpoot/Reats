@@ -185,7 +185,7 @@ class EmailService {
 
       const emailOptions = {
         to: user.email,
-        subject: '🎯 Welcome to ATS Checker - Start Optimizing Your Resume!',
+        subject: '🎯 Welcome to Reats - Start Optimizing Your Resume!',
         html: emailResult.html
       };
 
@@ -234,7 +234,7 @@ class EmailService {
 
       const emailOptions = {
         to: userEmail,
-        subject: '✅ ATS Checker Email Test - Configuration Successful',
+        subject: '✅ Reats Email Test - Configuration Successful',
         html: emailResult.html
       };
 
@@ -281,7 +281,7 @@ class EmailService {
 
       const emailOptions = {
         to: user.email,
-        subject: '🔧 Scheduled Maintenance Notice - ATS Checker',
+        subject: '🔧 Scheduled Maintenance Notice - Reats',
         html: emailResult.html
       };
 
@@ -327,7 +327,7 @@ class EmailService {
 
       const emailOptions = {
         to: user.email,
-        subject: '❌ Service Alert - ATS Checker',
+        subject: '❌ Service Alert - Reats',
         html: emailResult.html
       };
 
@@ -373,7 +373,7 @@ class EmailService {
 
       const emailOptions = {
         to: user.email,
-        subject: notificationData.subject || 'Notification from ATS Checker',
+        subject: notificationData.subject || 'Notification from Reats',
         html: emailResult.html
       };
 
