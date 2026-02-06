@@ -20,7 +20,7 @@ const LandingNavbar = () => {
               alt="ATS Checker" 
               className="w-8 h-8 group-hover:scale-110 transition-transform"
             />
-            <span className="text-xl font-bold tracking-tight">ATSChecker</span>
+            <span className="text-xl font-bold tracking-tight">Reats</span>
           </Link>
 
           {/* Get Started Button */}
