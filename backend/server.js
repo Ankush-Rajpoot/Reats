@@ -57,19 +57,9 @@ if (validateEmailConfig()) {
 // Security middleware
 app.use(helmet());
 
-// CORS configuration
-const corsOrigins = process.env.CORS_ORIGIN === 'true' 
-  ? true 
-  : [
-      'http://localhost:5173',
-      'http://localhost:5000',
-      'https://reats.in',
-      'https://atschecker.onrender.com',
-      process.env.FRONTEND_URL
-    ].filter(Boolean);
-
+// CORS configuration - Allow all origins
 app.use(cors({
-  origin: corsOrigins,
+  origin: true,
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
