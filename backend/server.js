@@ -54,15 +54,42 @@ if (validateEmailConfig()) {
   console.warn('⚠️  Email service not configured - using test email for development');
 }
 
-// Security middleware
-app.use(helmet());
+// CORS configuration - MUST BE BEFORE OTHER MIDDLEWARE
+const allowedOrigins = [
+  'http://localhost:5173',
+  'http://localhost:3000',
+  'http://localhost:5001',
+  'https://reats.in',
+  'https://www.reats.in',
+  process.env.FRONTEND_URL
+].filter(Boolean);
 
-// CORS configuration - Allow all origins
 app.use(cors({
-  origin: true,
+  origin: function(origin, callback) {
+    // Allow requests with no origin (mobile apps, curl, Postman)
+    if (!origin) return callback(null, true);
+    
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      console.warn(`⚠️  CORS blocked origin: ${origin}`);
+      callback(null, true); // Still allow but log for debugging
+    }
+  },
   credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
+  exposedHeaders: ['Content-Range', 'X-Content-Range'],
+  maxAge: 86400, // 24 hours
+  preflightContinue: false,
+  optionsSuccessStatus: 204
+}));
+
+// Security middleware - Configure AFTER CORS
+app.use(helmet({
+  crossOriginResourcePolicy: { policy: "cross-origin" },
+  crossOriginOpenerPolicy: { policy: "same-origin-allow-popups" },
+  contentSecurityPolicy: false // Disable for API
 }));
 
 // Rate limiting
