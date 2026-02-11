@@ -25,6 +25,21 @@ const emailRoutes = require('./routes/email');
 
 const app = express();
 
+// CORS configuration - MUST BE FIRST before any other middleware
+app.use(cors({
+  origin: true, // Allow all origins
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH', 'HEAD'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Origin'],
+  exposedHeaders: ['Content-Range', 'X-Content-Range'],
+  maxAge: 86400, // 24 hours
+  preflightContinue: false,
+  optionsSuccessStatus: 204
+}));
+
+// Handle preflight requests explicitly
+app.options('*', cors());
+
 // Connect to MongoDB
 connectDB();
 
@@ -54,23 +69,13 @@ if (validateEmailConfig()) {
   console.warn('⚠️  Email service not configured - using test email for development');
 }
 
-// CORS configuration - Allow all origins
-app.use(cors({
-  origin: true,
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
-  exposedHeaders: ['Content-Range', 'X-Content-Range'],
-  maxAge: 86400, // 24 hours
-  preflightContinue: false,
-  optionsSuccessStatus: 204
-}));
-
-// Security middleware - Configure AFTER CORS
+// Security middleware - Very permissive for API
 app.use(helmet({
-  crossOriginResourcePolicy: { policy: "cross-origin" },
-  crossOriginOpenerPolicy: { policy: "same-origin-allow-popups" },
-  contentSecurityPolicy: false // Disable for API
+  crossOriginEmbedderPolicy: false,
+  crossOriginResourcePolicy: false,
+  crossOriginOpenerPolicy: false,
+  contentSecurityPolicy: false,
+  originAgentCluster: false
 }));
 
 // Rate limiting
