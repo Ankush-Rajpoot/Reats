@@ -26,7 +26,7 @@ const emailRoutes = require('./routes/email');
 const app = express();
 
 // CORS configuration - MUST BE FIRST before any other middleware
-app.use(cors({
+const corsOptions = {
   origin: true, // Allow all origins
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH', 'HEAD'],
@@ -35,10 +35,18 @@ app.use(cors({
   maxAge: 86400, // 24 hours
   preflightContinue: false,
   optionsSuccessStatus: 204
-}));
+};
+
+app.use(cors(corsOptions));
 
 // Handle preflight requests explicitly
-app.options('*', cors());
+app.options('*', cors(corsOptions));
+
+// Log all requests for debugging CORS issues
+app.use((req, res, next) => {
+  console.log(`📥 ${req.method} ${req.path} - Origin: ${req.get('origin') || 'none'}`);
+  next();
+});
 
 // Connect to MongoDB
 connectDB();
@@ -120,12 +128,28 @@ if (process.env.NODE_ENV === 'development') {
 // Serve static files
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-// Health check endpoint
+// Health check endpoint - MUST BE BEFORE API ROUTES
 app.get('/health', (req, res) => {
-  res.json({
+  console.log('✅ Health check endpoint hit');
+  res.status(200).json({
     status: 'OK',
     timestamp: new Date().toISOString(),
+    uptime: process.uptime(),
+    memory: process.memoryUsage(),
     environment: process.env.NODE_ENV
+  });
+});
+
+// Root endpoint
+app.get('/', (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: 'ATS Checker API is running',
+    version: '1.0.0',
+    endpoints: {
+      health: '/health',
+      api: '/api'
+    }
   });
 });
 
@@ -136,21 +160,12 @@ app.use('/api/user', userRoutes);
 app.use('/api/upload', uploadRoutes);
 app.use('/api/email', emailRoutes);
 
-// Health check endpoint for keep-alive
-app.get('/health', (req, res) => {
-  res.status(200).json({
-    status: 'OK',
-    timestamp: new Date().toISOString(),
-    uptime: process.uptime(),
-    memory: process.memoryUsage()
-  });
-});
-
-// 404 handler
-app.use('*', (req, res) => {
+// 404 handler - MUST BE LAST
+app.use((req, res) => {
+  console.log(`❌ 404 - Route not found: ${req.method} ${req.path}`);
   res.status(404).json({
     success: false,
-    message: 'Route not found'
+    message: `Route not found: ${req.method} ${req.path}`
   });
 });
 
